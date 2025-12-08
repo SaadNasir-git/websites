@@ -1,0 +1,108 @@
+export const products: Product[] = [
+  {
+    id: '1',
+    name: 'Skyline Laptop Bag',
+    description: '15-inch, Grey, Water-resistant laptop bag with multiple compartments',
+    category: 'laptop-bags',
+    costPrice: 2000,
+    sellingPrice: 4800,
+    currentStock: 15,
+    minStock: 5,
+    status: 'active',
+    createdAt: '2023-10-15',
+    updatedAt: '2023-12-10',
+    tags: ['laptop', 'water-resistant', 'grey'],
+    supplier: 'Supplier A'
+  },
+  {
+    id: '2',
+    name: 'Vintage Leather Tote',
+    description: 'Genuine leather tote bag, brown color, medium size',
+    category: 'handbags',
+    costPrice: 3500,
+    sellingPrice: 7000,
+    currentStock: 8,
+    minStock: 3,
+    status: 'active',
+    createdAt: '2023-11-01',
+    updatedAt: '2023-12-12',
+    tags: ['leather', 'tote', 'brown'],
+    supplier: 'Supplier B'
+  },
+  {
+    id: '3',
+    name: 'Travel Backpack Pro',
+    description: 'Waterproof travel backpack with USB charging port',
+    category: 'backpacks',
+    costPrice: 4000,
+    sellingPrice: 8500,
+    currentStock: 12,
+    minStock: 4,
+    status: 'active',
+    createdAt: '2023-09-20',
+    updatedAt: '2023-12-08',
+    tags: ['travel', 'waterproof', 'usb'],
+    supplier: 'Supplier C'
+  },
+  {
+    id: '4',
+    name: 'Office Laptop Bag',
+    description: 'Professional laptop bag for office use, black color',
+    category: 'laptop-bags',
+    costPrice: 1800,
+    sellingPrice: 4200,
+    currentStock: 3,
+    minStock: 5,
+    status: 'active',
+    createdAt: '2023-12-01',
+    updatedAt: '2023-12-15',
+    tags: ['office', 'professional', 'black'],
+    supplier: 'Supplier A'
+  },
+  {
+    id: '5',
+    name: 'Mini Crossbody Bag',
+    description: 'Small crossbody bag for casual use, multiple colors',
+    category: 'handbags',
+    costPrice: 1200,
+    sellingPrice: 2800,
+    currentStock: 0,
+    minStock: 6,
+    status: 'active',
+    createdAt: '2023-11-15',
+    updatedAt: '2023-12-14',
+    tags: ['crossbody', 'mini', 'casual'],
+    supplier: 'Supplier D'
+  },
+  {
+    id: '6',
+    name: 'Student Backpack',
+    description: 'Durable backpack for students with laptop compartment',
+    category: 'backpacks',
+    costPrice: 2200,
+    sellingPrice: 5200,
+    currentStock: 20,
+    minStock: 8,
+    status: 'active',
+    createdAt: '2023-10-10',
+    updatedAt: '2023-12-05',
+    tags: ['student', 'durable', 'laptop'],
+    supplier: 'Supplier C'
+  },
+];
+
+export const categories = [
+  { value: 'laptop-bags', label: 'Laptop Bags' },
+  { value: 'handbags', label: 'Handbags' },
+  { value: 'backpacks', label: 'Backpacks' },
+  { value: 'travel-bags', label: 'Travel Bags' },
+  { value: 'wallet', label: 'Wallets' },
+];
+
+export const suppliers = [
+  'Supplier A',
+  'Supplier B',
+  'Supplier C',
+  'Supplier D',
+  'Supplier E',
+];
