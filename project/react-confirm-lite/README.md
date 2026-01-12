@@ -264,6 +264,7 @@ Want complete control over the UI? Use the render prop:
 - `colorSchema`: Current color scheme
 - `animationClass`: CSS class for current animation
 - `animationStyle`: Style object with animation duration
+- `lockScroll`: Boolean, If will be true then scroll will be locked when dialog will show.
 
 ## 📱 Real-World Examples
 
@@ -340,6 +341,7 @@ const handleFlexibleDialog = async () => {
   closeOnClickOutside={true}        // Allow backdrop click to close
   animationDurationIn={350}         // Enter: 350ms
   animationDurationOut={250}        // Exit: 250ms
+  lockScroll={false}                // true by default
 />
 ```
 
@@ -361,6 +363,7 @@ const handleFlexibleDialog = async () => {
 <ConfirmContainer closeOnEscape={true} closeOnClickOutside={false} />
 // Users can close via: OK, Cancel, or ESC key
 ```
+If user will close dialog box by clicking outside or by pressing escape then it will return `null`
 
 ## 🎨 Animation Gallery
 

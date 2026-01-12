@@ -32,8 +32,7 @@ export default function App() {
       title: 'Delete item',
       message: 'This action cannot be undone. Continue?',
       okText: 'Delete',
-      cancelText: 'Cancel',
-      id:'1'
+      cancelText: 'Cancel'
     })
 
     if (!confirmed) {
@@ -55,7 +54,9 @@ export default function App() {
     <div className="app">
       <h1>react-confirm-lite</h1>
       <p>Example usage</p>
+      <div style={{height:'200vh'}}>
 
+      </div>
       <button className="danger" onClick={handleDelete}>
         Delete item
       </button>

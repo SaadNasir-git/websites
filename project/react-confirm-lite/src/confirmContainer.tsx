@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef, type ReactNode, type CSSProperties } from "react";
-import { subscribe, closeAlert, setActiveContainer, setIsContainerActive, getIsContainerActive, getActiveContainerId } from "./confirm_store";
+import { subscribe, closeAlert, setActiveContainer, setIsContainerActive, getIsContainerActive, getActiveContainerId, makeId } from "./confirm_store";
 import type { ConfirmClasses, ConfirmOptions, ColorSchema, AnimationType, animationPairs } from "./types";
+import { lockBodyScroll, unlockBodyScroll } from "./confirm_store";
 import "./confirm.css";
 import './animations.css'
 import './colorSchemas.css'
@@ -39,6 +40,7 @@ type Props = {
   animationDuration?: number;
   animationDurationIn?: number;
   animationDurationOut?: number;
+  lockScroll?: boolean;
   children?: (props: {
     isVisible: boolean;
     confirm: ConfirmOptions;
@@ -61,6 +63,7 @@ const ConfirmContainer = ({
   animation = 'slide',
   animationDurationIn,
   animationDurationOut,
+  lockScroll = true,
   children,
   id
 }: Props) => {
@@ -72,7 +75,7 @@ const ConfirmContainer = ({
   const overlayRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const exitTimerRef = useRef<number | null>(null);
-  const containerId = useRef(id || `confirm-${Date.now().toString()}`)
+  const containerId = useRef(id || `confirm-${makeId()}`)
   const nullElement = <div id={containerId.current} className="null-confirm-container"></div>
 
   useEffect(() => {
@@ -91,11 +94,8 @@ const ConfirmContainer = ({
 
       // Check if we should show this alert
       const shouldShowAlert =
-        // Case 1: Alert has no ID (can be shown by any container)
         !nextAlert.id ||
-        // Case 2: Alert has an ID that matches our container ID
         nextAlert.id === containerId.current ||
-        // Case 3: No container is currently active
         !getActiveContainerId();
 
       if (shouldShowAlert) {
@@ -103,6 +103,9 @@ const ConfirmContainer = ({
         const currentActive = getActiveContainerId();
 
         if (!currentActive || currentActive === containerId.current) {
+          if (lockScroll) {
+            lockBodyScroll()
+          }
           setActiveContainer(containerId.current);
           setIsContainerActive(true);
 
@@ -115,7 +118,6 @@ const ConfirmContainer = ({
     }
     else if (alerts.length === 0 && currentAlert && isVisible) {
       // No more alerts, but we're showing one - start exit
-      console.log("Starting exit animation");
       setIsExiting(true);
       setIsVisible(false);
 
@@ -125,7 +127,6 @@ const ConfirmContainer = ({
 
       const exitDuration = animationDurationOut || animationDuration;
       exitTimerRef.current = setTimeout(() => {
-        console.log("Exit animation complete");
         setIsContainerActive(false);
         setIsExiting(false);
         setCurrentAlert(null);
@@ -134,7 +135,6 @@ const ConfirmContainer = ({
     }
     else if (alerts.length > 0 && currentAlert && alerts[0].id !== currentAlert.id) {
       // New alert with different ID is replacing current one
-      console.log("Replacing with new alert");
       setIsExiting(true);
       setIsVisible(false);
 
@@ -148,7 +148,6 @@ const ConfirmContainer = ({
         setIsExiting(false);
         setCurrentAlert(null);
         setIsMounted(false);
-
         // The new alert will be picked up in the next render
       }, exitDuration);
     }
@@ -177,6 +176,7 @@ const ConfirmContainer = ({
       setCurrentAlert(null);
       setIsMounted(false);
       setIsContainerActive(false);
+      unlockBodyScroll()
     }, exitDuration);
   }, [currentAlert, isExiting, animationDuration, animationDurationOut]);
 

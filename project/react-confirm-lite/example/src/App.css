@@ -1,6 +1,7 @@
 .app {
   padding: 40px;
   font-family: system-ui, sans-serif;
+  height: 200vh;
 }
 
 button {

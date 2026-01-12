@@ -231,3 +231,31 @@
   height: 0;
   opacity: 0;
 }
+
+/* .body-scroll-lock {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+} */
+
+/* Add to your global CSS or confirm.css */
+/* Global CSS file */
+html.scroll-locked {
+  overflow: hidden !important;
+  position: relative !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+html.scroll-locked body {
+  overflow: hidden !important;
+  height: 100% !important;
+  width: 100% !important;
+  position: relative !important;
+  padding-right: var(--scrollbar-width, 0px) !important;
+}
+
+/* Optional: Prevent momentum scrolling on iOS */
+html.scroll-locked {
+  -webkit-overflow-scrolling: auto !important;
+}
