@@ -91,6 +91,10 @@ const EventListener = (e: PointerEvent) => {
     containers.push(document.querySelectorAll('.null-confirm-container'));
   }
   if (containers.length === 0) return;
+  if (containers.length === 1) {
+    containerId = containers[0][0].id
+    return
+  }
 
   let parentElement = e.view?.document.activeElement?.parentElement;
   let container = parentElement?.querySelector('.null-confirm-container');
