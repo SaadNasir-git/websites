@@ -11,6 +11,13 @@
 
 ![Sample Image](https://camo.githubusercontent.com/af08928ac7006e57dc2a28f01b1fbc7214ea742379365f364f37bb204a93906b/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f646863716e35626d712f696d6167652f75706c6f61642f76313736363737383630322f53637265656e6361737466726f6d323032352d31322d323730302d34322d31342d657a6769662e636f6d2d6f7074696d697a655f6f64316874322e676966)
 
+## What's new?
+Just optimized, but now you will have to give an id to api and ConfirmContainer only if you're using multiple containers on the same page and want to show the specfic container when a specific api is called otherwise it will show the first rendered component. But one more thing if don't want to give the id and want to show the closest to the button then you can pass an argument to the api like this.
+```ts
+confirm('Are you sure?',true)
+```
+then it will show the closest otherwise will show the first rendered.
+
 ## 🔗 Live Demo
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitejs-vite-bfthlpmw?file=src%2FApp.tsx)
@@ -54,16 +61,21 @@ function App() {
 ```
 
 ### Important 
-By default it shows the closest container to button to which you clicked to show the confirmation dialog but you are a programmer and you will try thing and sometimes you may use it in useEffect hook then in this case it will show the first rendered confirm container.
-
-If you want to show a specific container by confirm api no matters where it is then you can pass the id like this
+By default it shows the first rendered component.
+But, if you want to show a specific container by confirm api no matters where it is then you can pass the id like this
 ```jsx
 // In confirm Api
 confirm({id:'1' , message:'Are you sure?'})
 // And in confirm Container
 <ConfirmContainer id='1'/>
 ```
-And make sure that not to pass same id to different `<ConfirmContainer />` In this way It will show both of these containers
+
+And make sure that not to pass same id to different `<ConfirmContainer />` In this way It will show both of these containers.
+
+One more thing that if you want to show the closest container to button to which you clicked then you can do like this.
+```ts
+confirm('Are you sure?', true)
+```
 
 ## 🎯 Features
 
@@ -175,6 +187,7 @@ const result = await confirm({
 | `closeOnEscape` | `boolean` | `true` | Close with ESC key |
 | `closeOnClickOutside` | `boolean` | `true` | Close on backdrop click |
 | `classes` | `ConfirmClasses` | `{}` | Custom CSS classes |
+<!-- | `closest` | `boolean` | `false` | If you want to show the closest container when api is called then do this true but it may be slow.| -->
 
 ### Confirm Function
 

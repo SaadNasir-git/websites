@@ -45,7 +45,7 @@ export type ConfirmInput = {
 };
 
 export type ConfirmOptions = {
-  id: string;
+  id?: string;
   title: string;
   message: string;
   resolve: (value: boolean | null) => void;

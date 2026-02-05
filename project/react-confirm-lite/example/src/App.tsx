@@ -7,7 +7,7 @@ const ThemePreview = ({ theme }: { theme: ColorSchema }) => {
 
   const handleClick = async () => {
     setisClicked(true)
-    const isConfirmed = await confirm('Are you sure?')
+    const isConfirmed = await confirm('Are you sure?', true)
     setisClicked(false)
     if (isConfirmed === null) console.log('User clicked outside or pressed escape')
     else if (isConfirmed) console.log('Ok')
@@ -54,16 +54,13 @@ export default function App() {
     <div className="app">
       <h1>react-confirm-lite</h1>
       <p>Example usage</p>
-      <div style={{height:'200vh'}}>
-
-      </div>
       <button className="danger" onClick={handleDelete}>
         Delete item
       </button>
       {themes.map((theme) => (
-        <ThemePreview theme={theme} key={theme}/>
+        <ThemePreview theme={theme} key={theme} />
       ))}
-      <ConfirmContainer id='1'/>
+      <ConfirmContainer id='1' />
     </div>
   )
 }
