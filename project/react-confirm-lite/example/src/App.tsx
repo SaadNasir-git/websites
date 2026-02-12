@@ -7,7 +7,7 @@ const ThemePreview = ({ theme }: { theme: ColorSchema }) => {
 
   const handleClick = async () => {
     setisClicked(true)
-    const isConfirmed = await confirm('Are you sure?', true)
+    const isConfirmed = await confirm('Are you sure?')
     setisClicked(false)
     if (isConfirmed === null) console.log('User clicked outside or pressed escape')
     else if (isConfirmed) console.log('Ok')

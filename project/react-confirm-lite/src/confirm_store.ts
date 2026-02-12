@@ -7,6 +7,15 @@ let confirms: ConfirmOptions[] = [];
 let listeners = new Set<Listener>();
 let isActiveContainer: boolean = false
 let containers: NodeListOf<Element> = document.querySelectorAll('.null-confirm-container');
+let showClose = false
+
+export function showClosest() {
+  showClose = true
+}
+
+export function isClosest() {
+  return showClose
+}
 
 // Global lock - only ONE container can show alerts at a time
 let activeContainerId: string | null = null;
